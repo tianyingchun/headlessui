@@ -1,0 +1,9 @@
+# Ignore artifacts:
+**/.next/**
+**/dist/**
+**/tmp/**
+**/*.d.ts
+**/*.css
+**/*.less
+.yarn
+node_modules
