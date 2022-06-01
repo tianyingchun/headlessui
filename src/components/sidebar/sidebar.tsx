@@ -1,7 +1,8 @@
-import { classNames } from '@dimjs/utils';
+import { twMerge } from 'tailwind-merge';
 import { Dialog, Transition } from '@headlessui/react';
 import { FC, Fragment, useCallback } from 'react';
 import { XCircleIcon } from '@heroicons/react/outline';
+import { classNames } from '@dimjs/utils';
 
 interface SidebarProps {
   open?: boolean;
@@ -28,14 +29,17 @@ export const Sidebar: FC<SidebarProps> = ({
     className ||
     (direction !== 'bottomUp' && direction !== 'topdown' ? 'sm:max-w-sm md:max-w-md lg:max-w-lg' : '');
 
-  const sidebarRoot = classNames(className, {
-    'relative flex-1 flex flex-col h-full w-full bg-white focus:outline-none max-w-xs shadow-xl':
-      direction === 'fromLeft',
-    'fixed z-40 inset-0 w-full bg-white inset-y-0 left-auto right-0 max-w-xs shadow-xl':
-      direction === 'fromRight',
-    'fixed z-40 inset-0 top-0 w-full bg-white shadow-xl': direction === 'bottomUp',
-    'fixed z-40 inset-0 bottom-0 w-full bg-white shadow-xl': direction === 'topdown',
-  });
+  const sidebarRoot = twMerge(
+    classNames({
+      'relative flex-1 flex flex-col h-full w-full bg-white focus:outline-none max-w-xs shadow-xl':
+        direction === 'fromLeft',
+      'fixed z-40 inset-0 w-full bg-white inset-y-0 left-auto right-0 max-w-xs shadow-xl':
+        direction === 'fromRight',
+      'fixed z-40 inset-0 top-0 w-full bg-white shadow-xl': direction === 'bottomUp',
+      'fixed z-40 inset-0 bottom-0 w-full bg-white shadow-xl': direction === 'topdown',
+    }),
+    className,
+  );
 
   const animationOverlay = {
     enter: 'transition-opacity ease-linear duration-300',
@@ -84,17 +88,21 @@ export const Sidebar: FC<SidebarProps> = ({
           leaveTo: '-translate-y-full',
         };
 
-  const handleClose = useCallback(() => {
-    if (open) {
-      onClose();
-    }
-  }, []);
+  const handleClose = useCallback(
+    (value) => {
+      console.log(value, open);
+      if (open) {
+        onClose();
+      }
+    },
+    [open],
+  );
 
   return (
     <Transition show={open} as={Fragment}>
       <Dialog
         as="div"
-        className="fixed inset-0 z-50 overflow-hidden"
+        className="fixed inset-0 z-10 overflow-hidden"
         onClose={staticMode ? () => null : handleClose}
         static={staticMode}
       >
