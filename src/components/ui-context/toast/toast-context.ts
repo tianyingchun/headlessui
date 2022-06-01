@@ -1,4 +1,5 @@
 import { createCtx } from '@wove/react';
+import { ReactNode } from 'react';
 
 export type TostMessageType = 'info' | 'success' | 'warning' | 'error';
 
@@ -11,7 +12,7 @@ export type Toast = {
   header?: string;
   truncate?: Truncate;
   lifetime: number;
-  message: string | React.ReactNode;
+  message: string | ReactNode;
 };
 
 export type ToastContextType = {
@@ -21,12 +22,7 @@ export type ToastContextType = {
   pushSuccess(message: string, lifetime?: number, truncate?: Truncate): void;
   pushInfo(message: string, lifetime?: number, truncate?: Truncate): void;
   push(message: string, type: TostMessageType, lifetime?: number, truncate?: Truncate): void;
-  pushCustom(
-    message: string | React.ReactNode,
-    lifetime: number,
-    truncate?: Truncate,
-    icon?: React.ReactNode,
-  ): void;
+  pushCustom(message: string | ReactNode, lifetime: number, truncate?: Truncate, icon?: ReactNode): void;
   remove(id: string): void;
 };
 

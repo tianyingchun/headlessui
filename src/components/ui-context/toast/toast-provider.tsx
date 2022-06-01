@@ -1,9 +1,7 @@
-/* Author: Dalibor Kundrat  https://github.com/damikun */
-
 import { hooks } from '@wove/react';
-import { FC, useState } from 'react';
+import { FC, ReactNode, useState } from 'react';
 import { ToastContainer, ToastContainerProps } from './toast-container';
-import { Toast, ToastContextProvider, TostMessageType, Truncate } from './toast-context';
+import { Toast, ToastContextProvider, ToastContextType, TostMessageType, Truncate } from './toast-context';
 
 function uuidv4() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -38,9 +36,14 @@ export const ToastProvider: FC<ToastProviderProps> = ({ children, variant }) => 
     },
   );
 
-  const pushCustom = hooks.useCallbackRef(
+  const pushCustom: (
+    message: string | ReactNode,
+    lifetime: number,
+    truncate?: Truncate,
+    icon?: ReactNode | ((...props) => JSX.Element),
+  ) => void = hooks.useCallbackRef(
     (
-      message: string | React.ReactNode,
+      message: string | ReactNode,
       lifetime?: number,
       truncate?: Truncate,
       icon?: (...props) => JSX.Element,
@@ -80,7 +83,7 @@ export const ToastProvider: FC<ToastProviderProps> = ({ children, variant }) => 
     setData(newData);
   });
 
-  const contextValue = {
+  const contextValue: ToastContextType = {
     data,
     push,
     pushInfo,

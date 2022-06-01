@@ -1,5 +1,3 @@
-/* Author: Dalibor Kundrat  https://github.com/damikun */
-
 import { twMerge } from 'tailwind-merge';
 import { hooks } from '@wove/react';
 import { FC } from 'react';

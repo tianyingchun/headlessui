@@ -1,4 +1,3 @@
-/* Author: Dalibor Kundrat  https://github.com/damikun */
 import { twMerge } from 'tailwind-merge';
 import { CheckCircleIcon, ExclamationCircleIcon, ExclamationIcon, XIcon } from '@heroicons/react/outline';
 import { InformationCircleIcon } from '@heroicons/react/solid';
