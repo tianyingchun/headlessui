@@ -15,7 +15,7 @@ export const DialogTwo: FC<DialogTwoProps> = ({ show, onClose }) => {
   }, []);
   return (
     <Transition show={show} as={Fragment}>
-      <Dialog as="div" className="fixed inset-0 z-40 flex" onClose={handleClose}>
+      <Dialog as="div" open={show} className="fixed inset-0 z-40 flex" onClose={handleClose}>
         <Transition.Child
           as={Fragment}
           enter="transition-opacity ease-linear duration-300"
@@ -37,7 +37,7 @@ export const DialogTwo: FC<DialogTwoProps> = ({ show, onClose }) => {
           leaveFrom="translate-y-0"
           leaveTo="translate-y-full"
         >
-          <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
+          <Dialog.Panel className="fixed inset-0 top-10 z-40 w-full bg-white shadow-xl">
             <div className="flex items-center justify-between px-4">
               <h2 className="text-lg font-medium text-gray-900">Filters</h2>
               <button
@@ -50,7 +50,7 @@ export const DialogTwo: FC<DialogTwoProps> = ({ show, onClose }) => {
               </button>
             </div>
 
-            <form className="mt-4 h-80 bg-gray-400 text-center">Dialog Two</form>
+            <div className="mt-4 h-80 bg-gray-400 text-center">Dialog Two</div>
           </Dialog.Panel>
         </Transition.Child>
       </Dialog>

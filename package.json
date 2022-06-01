@@ -20,6 +20,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@dimjs/utils": "^1.2.9",
     "@headlessui/react": "1.6.4",
     "@heroicons/react": "^1.0.6",
     "@tailwindcss/aspect-ratio": "^0.4.0",
